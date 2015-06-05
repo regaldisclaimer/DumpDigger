@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>Dump Digger</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+	<style>
+		body {
+			font-family: 'Roboto', sans-serif;
+			font-weight: 300;
+			font-size: 2em;
+			text-align: center;
+		}
+
+		h1 {
+			font-weight: 400;
+			font-size: 3em;
+		}
+
+		h2 {
+			font-weight: 300;
+		}
+
+		.el {
+			margin: 6px;
+		}
+	</style>
+
+</head>
+<body>
+	<h1 onclick='eval("2")'>Dump Digger</h1>
+	<h2>Find the treasure hidden in this dump!</h2>
+
+	<div id='dump'>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
+</body>
+
+<script>
+	$(function(){
+		var dump = $('#dump');
+		for(var i=0; i<2; i++) {
+			var str = "'"+i+"'";
+			var el = '<iframe id= "'+i+'" class="el" onclick="eval('+str+')" scrolling="no" style="border: 0; width: 336px; height: 280px;" src="http://coinurl.com/get.php?id=38662"></iframe>';
+			el = $(el);
+			dump.append(el);
+		}
+
+	});
+
+	function eval(id) {
+		//take ID and process SHA256 hash
+		var hash = CryptoJS.SHA3(id, { outputLength: 512 }).toString();
+		alert(hash);
+	}
+
+</script>
